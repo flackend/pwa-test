@@ -38,13 +38,34 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="button.css">
 </head>
-<body>
-  <div class="container">
+<body ontouchstart="">
+  <div class="container" id="app">
     <h1 class="text-center my-5">TREVOR</h1>
     <p>Just making a simple PWA to see what's capable. This a really exciting concept and can create a really beautiful user experience.</p>
-    <p>
-      <button class="button button--stripe">THIS BUTTON DOEN'T DO ANYTHING.</button>
-    </p>
+    <div class="card">
+      <h3 class="card-header">PUSH NOTIFICATIONS</h3>
+      <div class="card-body">
+        <p>Possible? {{notifications.api ? 'Yes' : 'No'}}.</p>
+        <p>Granted? {{notifications.granted ? 'Yes' : 'No'}}.</p>
+        <p v-show="notifications.api && !notifications.granted"><button class="button button--stripe" @click="getNotificationPerms">Sub to push notifications.</button></p>
+        <p v-show="notifications.api && notifications.granted"><button class="button button--stripe" @click="sendBasicNotification">Create a notification.</button></p>
+      </div>
+    </div>
+    <div class="card">
+      <h3 class="card-header">SERVICE WORKERS</h3>
+      <div class="card-body">
+        <p>Possible? {{serviceWorkers.api ? 'Yes' : 'No'}}.</p>
+        <p>Registered? {{serviceWorkers.registered ? 'Yes' : 'No'}}.</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3 class="card-header">PUSH MANAGER</h3>
+      <div class="card-body">
+        <p>Possible? {{pushManager.api ? 'Yes' : 'No'}}.</p>
+      </div>
+    </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
